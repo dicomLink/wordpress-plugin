@@ -1,0 +1,14 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"title": "dicom.link Vault Uploader",
+	"name": "dicomlink/vault-uploader",
+	"category": "layout",
+	"icon": "cloud-upload",
+	"textdomain": "vault-uploader",
+	"example": {},
+	"editorScript": "file:./block.js",
+	"viewScript": "file:./main2.js",
+	"script": "file:./main2.js",
+	"style": "file:./style.css"
+}
