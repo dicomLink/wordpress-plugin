@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 
 
 /**
- * Dicom Vault Uploader class.
+ * Dicom SecurePACS Uploader class.
  */
 class dicomLinkDicomViewer_block_Uploader
 {
@@ -28,7 +28,7 @@ class dicomLinkDicomViewer_block_Uploader
         $this->getOpts();
 
         wp_enqueue_script(
-            'vault-script',
+            'securepacs-script',
             $this->vaultScript,
             array('wp-blocks', 'wp-element'),
             null
@@ -76,7 +76,7 @@ class dicomLinkDicomViewer_block_Uploader
             // Gutenberg is not active.
             return;
         }
-        register_block_type(__DIR__ . '/vault-uploader', array(
+        register_block_type(__DIR__ . '/securepacs-uploader', array(
             'render_callback' => function ($attribs, $content) {
 
                 wp_register_script('main-script-inline', '');
@@ -85,10 +85,13 @@ class dicomLinkDicomViewer_block_Uploader
                 $mainScript = '
                 
                 window.onload = function () {
+                    
+                    let container = document.querySelector(".wp-block-dicomlink-securepacs-uploader");
                     let opts = {
-                        apiKey: "mykey",
+                        container: container,
                         server: \'' . $this->vaultAddress  . '\',
-                        userId: \'' . $this->vaultUserId  . '\',
+                        publicKeyId: \'' . $this->vaultUserId  . '\',
+                        studyType: 5
                     }
                     Vault.Init(opts);
                 };
@@ -97,13 +100,13 @@ class dicomLinkDicomViewer_block_Uploader
                 wp_add_inline_script('main-script-inline', $mainScript);
 
                 wp_enqueue_script(
-                    'vault-script',
+                    'securepacs-script',
                     $this->vaultScript,
                     array('wp-blocks', 'wp-element'),
                     null
                 );
 
-                wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css', array(), $this->_version);
+                wp_register_style('font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css', array(), $this->parent->_version);
                 wp_enqueue_style('font-awesome');
 
 
@@ -114,7 +117,7 @@ class dicomLinkDicomViewer_block_Uploader
 
     function script_enqueue_if_block_is_present()
     {
-        if (has_block('dicomlink/vault-uploader')) {
+        if (has_block('dicomlink/securepacs-uploader')) {
         }
     }
 

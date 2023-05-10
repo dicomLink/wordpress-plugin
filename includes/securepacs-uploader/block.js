@@ -30,35 +30,40 @@
 			return fv;
 		}
 
-		blocks.registerBlockType('dicomlink/vault-uploader', {
+		
+		blocks.registerBlockType('dicomlink/securepacs-uploader', {
 			edit: function () {
+				console.log('edit');
 				var v = getV();
 				var uploaderElement = wp.element.createElement('div', {
+					className:'wp-block-dicomlink-securepacs-uploader',
 					dangerouslySetInnerHTML: {
-						__html: v.htmlBlock
+						__html: v.htmlBlock()
 					}
 				});
 
-				return el(
-					'div',
-					useBlockProps(),
-					uploaderElement
-				);
+				var styleTxt = atob(v._internal.styleCss.substring(v._internal.styleCss.indexOf(',')+1));
+				var styleuploaderElement = wp.element.createElement('style', {
+					dangerouslySetInnerHTML: {
+						__html: styleTxt
+					}
+				});
+
+				return [uploaderElement,styleuploaderElement];
 
 			},
 			save: function () {
+				console.log('save');
 				var v = getV();
 				var uploaderElement = wp.element.createElement('div', {
+					className:'wp-block-dicomlink-securepacs-uploader',
 					dangerouslySetInnerHTML: {
-						__html: v.htmlBlock
+						__html: v.htmlBlock()
 					}
 				});
 
-				return el(
-					'div',
-					useBlockProps.save(),
-					uploaderElement
-				);
+				
+				return uploaderElement;
 
 			},
 			supports: { multiple: false },

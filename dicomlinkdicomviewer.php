@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: dicomLinkDicomViewer
- * Version: 1.7.0
+ * Version: 1.7.4
  * Plugin URI: https://dicom.link/wordpress
  * Description: DICOM viewer for Wordpress: embed studies in pages and posts.
  * Author: dicom.link
@@ -13,7 +13,7 @@
  *
  * @package dicomLinkDicomViewer
  * @author dicom.link
- * @since 1.7.0
+ * @since 1.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,7 +36,7 @@ require_once 'includes/lib/class-dicomlinkdicomviewer-admin-api.php';
  * @return object dicomLinkDicomViewer
  */
 function dicomlinkdicomviewer() {
-	$instance = dicomLinkDicomViewer::instance( __FILE__, '1.7.0' );
+	$instance = dicomLinkDicomViewer::instance( __FILE__, '1.7.4' );
 
 	if ( is_null( $instance->settings ) ) {
 		$instance->settings = dicomLinkDicomViewer_Settings::instance( $instance );

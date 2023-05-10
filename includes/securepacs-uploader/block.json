@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"title": "dicom.link SecurePACS Uploader",
+	"name": "dicomlink/securepacs-uploader",
+	"category": "layout",
+	"icon": "cloud-upload",
+	"textdomain": "SecurePACS-uploader",
+	"example": {},
+	"editorScript": "file:./block.js"
+}
